@@ -1,0 +1,11 @@
+/* Boton  */
+.btn-warning {
+  background-color: #fff3cd !important;
+  border-radius: 8px !important;
+  font-weight: bold;
+}
+
+/* Boton agregar categoria */
+.btn-dark {
+  border-radius: 8px;
+}

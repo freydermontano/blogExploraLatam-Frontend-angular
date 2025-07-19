@@ -1,0 +1,42 @@
+<div class="container-xl d-flex justify-content-center align-items-center"
+  style="min-height: 100vh;">
+  <div class="form-wrapper bg-white p-4 rounded shadow"
+    style="max-width: 640px; width: 100%;">
+
+    <h1 class="text-dark text-center mb-4 fw-bold">Editar Categoría</h1>
+
+    <form (ngSubmit)="onFormSubmit()" #form="ngForm">
+
+      <div class="mb-3 ">
+        <label class="form-label">Nombre de la Categoria</label>
+        <input
+          type="text"
+          class="form-control"
+          id="categoryName"
+          name="categoryName" [(ngModel)]="model.name" />
+      </div>
+
+      <div class="mb-3 ">
+        <label class="form-label">Categoria Url Hadnle</label>
+        <input
+          type="text"
+          class="form-control"
+          id="categoryUrlHandle"
+          name="categoryUrlHandle"
+          [(ngModel)]="model.urlHandle" />
+      </div>
+
+      <div class="mb-3">
+                  <button
+            type="submit"
+            class="btn w-100 p-2"
+            style="background-color: #efcc6b; color: #212529; border: 2px solid #e1b72a;">
+            <i class="fas fa-check-circle fa-lg me-2"></i>
+            <span class="fw-bold">Guardar</span>
+          </button>
+      </div>
+
+    </form>
+
+  </div>
+</div>
