@@ -1,3 +1,4 @@
+import { Category } from "../../category/models/Category.model";
 
 export interface AddBlogPost{
 
@@ -9,6 +10,9 @@ export interface AddBlogPost{
      urlHandle: string;
      featureImageUrl: string;
      isVisible: boolean;
+     //Mostrar las categorias asociada a blogPost
+     categories:string[];
+
 
 }
 

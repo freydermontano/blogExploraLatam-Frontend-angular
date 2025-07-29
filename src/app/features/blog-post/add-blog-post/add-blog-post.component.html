@@ -1,71 +1,105 @@
 <div
   class="container-xl d-flex flex-column justify-content-center align-items-center"
   style="min-height: 100vh;">
-
-  <h2 class="fw-bold text-center my-4 display-5"> Agregar Publicación </h2>
+  <h2 class="fw-bold text-center my-4 display-5">Agregar Publicación</h2>
 
   <div class="form-wrapper bg-white p-4 rounded shadow mb-4"
-    style="max-width: 640px; width: 100%;">
+    style="max-width: 740px; width: 100%;">
+    <form (ngSubmit)="onFormSubmit()" #form="ngForm" class="mt-5">
 
-    <form
-      (ngSubmit)="onFormSubmit()"
-      #form="ngForm"
-      class="mt-5">
+      <!-- Titulo -->
       <div class="mb-3">
         <label for="title" class="form-label">Título</label>
         <input name="title" type="text" class="form-control"
           [(ngModel)]="model.title" id="title" />
       </div>
 
+      <!-- URL Handle -->
       <div class="mb-3">
-        <label for="urlHandle" class="form-label">urlHandle</label>
+        <label for="urlHandle" class="form-label">URL Handle</label>
         <input name="urlHandle" type="text" class="form-control"
           [(ngModel)]="model.urlHandle" id="urlHandle" />
       </div>
 
+      <!-- Descripcion -->
       <div class="mb-3">
         <label for="description" class="form-label">Descripción</label>
         <input name="description" type="text" class="form-control"
           [(ngModel)]="model.shortDescription" id="description" />
       </div>
-
-      <div class="mb-3">
-        <label for="content" class="form-label">Contenido</label>
-        <textarea name="content" class="form-control" id="content"
-          [(ngModel)]="model.content" rows="3"></textarea>
+      <!-- Contenido y Preview -->
+      <div class="mb-3 row">
+        <div class="col-md-6">
+          <label for="content" class="form-label">Contenido</label>
+          <textarea
+            name="content"
+            class="form-control"
+            id="content"
+            [(ngModel)]="model.content"
+            rows="10"></textarea>
+        </div>
+        <div
+          class="col-md-6 border rounded"
+          style="max-height: 300px; overflow-y: auto;">
+          <label class="form-label">Vista previa</label>
+          <markdown [data]="model.content || 'Sin contenido aún.'"></markdown>
+        </div>
       </div>
 
+      <!-- Imagen -->
       <div class="mb-3">
         <label for="featureImageUrl" class="form-label">Imagen URL</label>
+
+        <ng-container
+          *ngIf="model.featureImageUrl != '../../../../assets/default-image.jpg'">
+          <div class="mb-3">
+            <img [src]="model.featureImageUrl" alt="Imagen"
+              style="height: 120px; width: 200px; object-fit: cover;">
+          </div>
+        </ng-container>
+
         <input type="text" name="featureImageUrl" class="form-control"
           [(ngModel)]="model.featureImageUrl" id="featureImageUrl" />
       </div>
 
+      <!-- Fecha de publicacion -->
       <div class="mb-3">
-        <label for="publishedDate" class="form-label">Fecha de Publicación</label>
-        <input type="date" class="form-control" value="{{model.publishedDate}}"
-          [ngModel]="model.publishedDate | date:'yyyy-MM-dd' "
-          name="publishedDate" id="publishedDate"
-          (ngModelChange)="model.publishedDate = $event"
-        />
+        <label for="publishedDate" class="form-label">Fecha de
+          Publicación</label>
+        <input type="date" class="form-control" name="publishedDate"
+          [(ngModel)]="model.publishedDate" id="publishedDate" />
       </div>
 
+      <!-- Autor -->
       <div class="mb-3">
         <label for="author" class="form-label">Autor</label>
         <input type="text" name="author" class="form-control"
           [(ngModel)]="model.author" id="author" />
       </div>
 
+      <!-- Checkbox Visibilidad -->
       <div class="mb-3 form-check">
-        <label class="form-check-label" for="isVisible">Es Visible</label>
         <input class="form-check-input" type="checkbox" id="isVisible"
           [(ngModel)]="model.isVisible" name="isVisible">
+        <label class="form-check-label" for="isVisible">Es Visible</label>
       </div>
 
       <div class="mb-3">
-        <button
-          type="submit"
-          class="btn w-100 p-2"
+        <label for="category" class="form-label">Categoría</label>
+
+        <ng-container *ngIf="categories$ | async as categories">
+          <select multiple [(ngModel)]="model.categories" name="categories">
+            <option *ngFor="let categ of categories$ | async" [value]="categ.id">
+              {{ categ.name }}
+            </option>
+          </select>
+
+        </ng-container>
+      </div>
+
+      <!-- Boton de guardar -->
+      <div class="mb-3">
+        <button type="submit" class="btn w-100 p-2"
           style="background-color: #efcc6b; color: #212529; border: 2px solid #e1b72a;">
           <i class="fas fa-check-circle fa-lg me-2"></i>
           <span class="fw-bold">Guardar</span>

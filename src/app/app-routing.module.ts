@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 import { CategoryListComponent } from './features/category/category-list/category-list.component';
 import { AddCategoryComponent } from './features/category/add-category/add-category.component';
 import { EditCategoryComponent } from './features/category/edit-category/edit-category.component';
 import { BlogPostListComponent } from './features/blog-post/blog-post-list/blog-post-list.component';
 import { AddBlogPostComponent } from './features/blog-post/add-blog-post/add-blog-post.component';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
 
@@ -24,7 +24,7 @@ const routes: Routes = [
 
   //BlogPosts
   {
-    path:'admin/blog-posts',
+    path:'admin/blogposts',
     component:BlogPostListComponent
   },
   {

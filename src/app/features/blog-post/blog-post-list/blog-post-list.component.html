@@ -1,14 +1,79 @@
 <div class="container-xl">
-  <h2 class="fw-bold p-3 text-center mb-3 mt-5 display-5">Lista de Publicaciones</h2>
+  <h2 class="fw-bold p-3 text-center mb-3 mt-5 display-5">Lista de
+    Publicaciones</h2>
 
   <div class="d-flex justify-content-end mb-3 p-4">
-    <a  [routerLink]="['/admin/blogposts/add']" class="btn btn-dark btn-sm p-2">
-    <i class="fas fa-folder-plus me-2"></i>
+    <a [routerLink]="['/admin/blogposts/add']" class="btn btn-dark btn-sm p-2">
+      <i class="fas fa-folder-plus me-2"></i>
       Agregar Publicación
-  </a>
+    </a>
   </div>
 
+  <ng-container *ngIf="blogPosts$ | async as blogPosts; else noBlogPosts">
+    <div class="table-responsive">
+      <table class="table table-hover table-bordered align-middle text-center">
+        <thead class="table-dark">
+          <tr>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Fecha</th>
+            <th>Descripción corta</th>
+            <th>Visibilidad</th>
+            <th>Imagen</th>
+            <th>Categorías</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let blogPost of blogPosts">
+            <td class="title-cell">{{ blogPost.title }}</td>
+            <td>{{ blogPost.author }}</td>
+            <td>{{ blogPost.publishedDate | date: 'shortDate' }}</td>
+            <td class="text-truncate" style="max-width: 200px;">{{
+              blogPost.shortDescription }}</td>
+            <td>
+              <span class="badge"
+                [ngClass]="blogPost.isVisible ? 'bg-success' : 'bg-secondary'">
+                {{ blogPost.isVisible ? 'Visible' : 'Oculto' }}
+              </span>
+            </td>
+            <td>
+              <img
+                [src]="blogPost.featureImageUrl || '../../../../assets/default-image.jpg'"
+                alt="Imagen"
+                class="img-fluid rounded"
+                style="width: 120px; height: 80px; object-fit: cover;" />
+            </td>
+            <td>
+              <ng-container
+                *ngIf="blogPost.categories.length > 0; else sinCategoria">
+                <span *ngFor="let category of blogPost.categories"
+                  class="badge bg-success me-1">
+                  {{ category.name }}
+                </span>
+              </ng-container>
+              <ng-template #sinCategoria>
+                <span class="badge bg-secondary">Sin categoría</span>
+              </ng-template>
+            </td>
+            <td class="text-center align-middle">
+              <div class="d-flex justify-content-center gap-2">
+                <button class="btn btn-sm btn-warning"
+                  [routerLink]="['/admin/blogposts', blogPost.id]">Editar</button>
+                <a [routerLink]="['/blog', blogPost.urlHandle]"
+                  class="btn btn-sm btn-outline-primary">Ver</a>
+              </div>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-container>
+
+  <ng-template #noBlogPosts>
+    <div class="alert alert-warning text-center fw-bold " role="alert">
+      <p class="h5">No hay publicaciones registradas.</p>
+    </div>
+  </ng-template>
 </div>
-
-
-<!-- [routerLink]="['/admin/categories/add']" -->

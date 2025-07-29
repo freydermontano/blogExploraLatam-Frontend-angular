@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CategoryService } from '../services/category.service';
 import { Category } from '../models/Category.model';
 import { UpdateCategoryRequest } from '../models/update-category-request.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-category',
