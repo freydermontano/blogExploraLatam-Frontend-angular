@@ -16,6 +16,8 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
   id: string | null = null;
   paramsSubcription?: Subscription;
   updateCategorySubcription?: Subscription;
+  selectedCategories?: string[];
+
 
   //Crear Objeto para asignar los datos obtenidos del id, como nombre y urlHandle
   category?: Category;

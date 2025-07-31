@@ -5,6 +5,7 @@ import { EditCategoryComponent } from './features/category/edit-category/edit-ca
 import { BlogPostListComponent } from './features/blog-post/blog-post-list/blog-post-list.component';
 import { AddBlogPostComponent } from './features/blog-post/add-blog-post/add-blog-post.component';
 import { RouterModule, Routes } from '@angular/router';
+import { EditBlogPostComponent } from './features/blog-post/edit-blog-post/edit-blog-post.component';
 
 const routes: Routes = [
 
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path:'admin/blogposts/add',
     component:AddBlogPostComponent
+  },
+   {
+    path:'admin/blogposts/:id',
+    component:EditBlogPostComponent
   }
 ];
 

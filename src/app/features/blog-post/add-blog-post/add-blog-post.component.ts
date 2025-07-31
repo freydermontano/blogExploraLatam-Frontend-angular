@@ -68,7 +68,5 @@ export class AddBlogPostComponent implements OnInit {
         console.log(error);
       },
     });
-
-    console.log(this.model);
   }
 }
