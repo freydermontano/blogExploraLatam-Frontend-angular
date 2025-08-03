@@ -1,0 +1,72 @@
+<div class="card shadow-lg rounded-4 border-0 h-100">
+  <!-- Header -->
+  <div class="card-header bg-dark text-white rounded-top-4">
+    <h3 class="card-title mb-0">
+      <i class="fas fa-images me-2"></i>Imágenes
+    </h3>
+  </div>
+
+  <!-- Body -->
+  <div class="card-body p-4">
+    <div class="row g-4 d-flex flex-lg-row flex-md-column justify-content-between">
+
+      <!-- Selección -->
+      <div class="col-md-8" style="overflow-y: auto;">
+        <div class="border rounded p-4 bg-light" style="min-height: 580px;">
+          <p class="text-muted text-center mb-4">
+            Aquí se mostrarán las imágenes seleccionadas o disponibles.
+          </p>
+
+          <ng-container *ngIf="images$ | async as images">
+            <div class="d-flex flex-wrap gap-4 justify-content-start">
+              <div *ngFor="let image of images" class="text-center" style="max-width: 200px;">
+                <img [src]="image.url" alt="{{ image.title }}"
+                  class="img-fluid rounded border shadow-sm mb-2"
+                  style="width: 100%; height: auto; object-fit: cover;">
+                <span class="d-block text-truncate">{{ image.title }}</span>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <!-- Formulario de subida -->
+      <div class="col-md-4">
+        <div class="border rounded p-3 bg-white shadow-sm">
+          <h5 class="fw-bold mb-3">
+            <i class="fas fa-upload me-2"></i>Subir Imágenes
+          </h5>
+
+          <form #form="ngForm" (ngSubmit)="onUploadImage()">
+            <div class="mb-3">
+              <label class="form-label">Seleccionar archivo</label>
+              <input type="file" class="form-control" accept="image/*"
+                (change)="onFileUploadChange($event)">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Título de la imagen</label>
+              <input type="text" class="form-control"
+                placeholder="Ej: Atardecer en la montaña"
+                [(ngModel)]="title" name="title">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Nombre del archivo de la imagen</label>
+              <input type="text" class="form-control"
+                placeholder="Ej: atardecer_montaña.jpg"
+                [(ngModel)]="fileName" name="fileName">
+            </div>
+
+            <div class="d-grid">
+              <button type="submit" class="btn btn-dark">
+                <i class="fas fa-cloud-upload-alt me-2"></i>Subir Imagen
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
