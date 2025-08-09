@@ -38,4 +38,12 @@ export class BlogPostService {
     );
   }
 
+  deleteBlogPost(id:string): Observable<BlogPost>{
+    return this.httpClient.delete<BlogPost>(
+      `${environment.apiBaseUrl}/api/blogposts/${id}`
+    );
+  }
+
+
+
 }

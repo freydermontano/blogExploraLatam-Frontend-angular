@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ImageService } from './image.service';
 import { Observable } from 'rxjs';
 import { BlogImage } from '../../models/blog-image.models';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-image-selector',
@@ -11,17 +12,13 @@ import { BlogImage } from '../../models/blog-image.models';
 export class ImageSelectorComponent implements OnInit {
   //Variables
   private file?: File;
-
   fileName: string = '';
   title: string = '';
-
   images$?: Observable<BlogImage[]>;
 
+  @ViewChild('form', { static: false }) imageUploadForm?: NgForm;
 
-
-  constructor(private imageService: ImageService) {
-
-  }
+  constructor(private imageService: ImageService) {}
 
   ngOnInit(): void {
     this.getImages();
@@ -32,28 +29,34 @@ export class ImageSelectorComponent implements OnInit {
     this.file = elements.files?.[0];
   }
 
-  onUploadImage():void {
-
+  onUploadImage(): void {
     if (this.file) {
       if (this.file && this.fileName !== '' && this.title !== '') {
         //Servicio Imagen
-        this.imageService.uploadImageSelected(this.file, this.fileName, this.title).subscribe({
-          next:(response)=>{
-            console.log('Imagen subida correctamente', response)
-            this.getImages();
-            this.fileName = '';
-            this.title = '';
-            this.file = undefined;
-          },
-          error:(error)=>{
-            console.log(error)
-          }
-        })
+        this.imageService
+          .uploadImageSelected(this.file, this.fileName, this.title)
+          .subscribe({
+            next: (response) => {
+              console.log('Imagen subida correctamente', response);
+              this.imageUploadForm?.resetForm();
+              this.getImages();
+            },
+            error: (error) => {
+              console.log(error);
+            },
+          });
       }
     }
   }
 
-  private getImages(){
+  // Seleccionar Imagen
+  selectImage(image: BlogImage): void{
+    this.imageService.selectImage(image);
+
+  }
+
+
+  private getImages() {
     this.images$ = this.imageService.getAllImages();
   }
 }

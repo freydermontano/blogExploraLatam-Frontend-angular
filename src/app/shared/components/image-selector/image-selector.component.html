@@ -8,21 +8,25 @@
 
   <!-- Body -->
   <div class="card-body p-4">
-    <div class="row g-4 d-flex flex-lg-row flex-md-column justify-content-between">
-
-      <!-- Selección -->
-      <div class="col-md-8" style="overflow-y: auto;">
-        <div class="border rounded p-4 bg-light" style="min-height: 580px;">
+    <div class="row g-4 d-flex flex-row justify-content-between">
+      <!-- Seleccion -->
+      <div class="col-6">
+        <div class="border rounded p-4 bg-light h-100"
+             style="min-height: 580px; max-height: 580px; overflow-y: auto;">
           <p class="text-muted text-center mb-4">
-            Aquí se mostrarán las imágenes seleccionadas o disponibles.
+             <span class="fw-bold text-dark mb-3 mt-1">Imágenes seleccionadas o disponibles.</span>
           </p>
 
           <ng-container *ngIf="images$ | async as images">
             <div class="d-flex flex-wrap gap-4 justify-content-start">
-              <div *ngFor="let image of images" class="text-center" style="max-width: 200px;">
+              <!-- Imagen Seleccionada -->
+              <div *ngFor="let image of images"
+              (click)="selectImage(image)"
+                   class="text-center"
+                   style="max-width: 200px; overflow: hidden;">
                 <img [src]="image.url" alt="{{ image.title }}"
-                  class="img-fluid rounded border shadow-sm mb-2"
-                  style="width: 100%; height: auto; object-fit: cover;">
+                     class="img-fluid rounded border shadow-sm mb-2"
+                     style="width: 100%; height: auto; object-fit: cover; cursor: pointer;">
                 <span class="d-block text-truncate">{{ image.title }}</span>
               </div>
             </div>
@@ -30,9 +34,10 @@
         </div>
       </div>
 
-      <!-- Formulario de subida -->
-      <div class="col-md-4">
-        <div class="border rounded p-3 bg-white shadow-sm">
+      <!-- Formulario -->
+      <div class="col-6">
+        <div class="border rounded p-3 bg-white shadow-sm h-100"
+             style="min-height: 580px; max-height: 580px; overflow-y: auto;">
           <h5 class="fw-bold mb-3">
             <i class="fas fa-upload me-2"></i>Subir Imágenes
           </h5>
@@ -41,21 +46,21 @@
             <div class="mb-3">
               <label class="form-label">Seleccionar archivo</label>
               <input type="file" class="form-control" accept="image/*"
-                (change)="onFileUploadChange($event)">
+                     (change)="onFileUploadChange($event)">
             </div>
 
             <div class="mb-3">
               <label class="form-label">Título de la imagen</label>
               <input type="text" class="form-control"
-                placeholder="Ej: Atardecer en la montaña"
-                [(ngModel)]="title" name="title">
+                     placeholder="Ej: Atardecer en la montaña"
+                     [(ngModel)]="title" name="title">
             </div>
 
             <div class="mb-3">
               <label class="form-label">Nombre del archivo de la imagen</label>
               <input type="text" class="form-control"
-                placeholder="Ej: atardecer_montaña.jpg"
-                [(ngModel)]="fileName" name="fileName">
+                     placeholder="Ej: atardecer_montaña.jpg"
+                     [(ngModel)]="fileName" name="fileName">
             </div>
 
             <div class="d-grid">

@@ -48,7 +48,11 @@
 
       <!-- Imagen -->
       <div class="mb-3">
-        <label for="featureImageUrl" class="form-label">Imagen URL</label>
+        <label for="featureImageUrl" class="form-label">Imagen URL
+          <button type="button" class="btn btn-light" (click)="openModalSelectorImage()">
+              Seleccionar Imagen
+            </button>
+        </label>
 
         <ng-container
           *ngIf="model.featureImageUrl != '../../../../assets/default-image.jpg'">
@@ -104,8 +108,16 @@
           <i class="fas fa-check-circle fa-lg me-2"></i>
           <span class="fw-bold">Guardar</span>
         </button>
+
       </div>
 
     </form>
   </div>
+</div>
+
+
+ <!-- Modal Selector Image -->
+<div class="image-container-modal" [ngClass]="{'d-block': isImageSelected, 'd-none': !isImageSelected}">
+  <button type="button" class="btn btn-light" (click)="closeModalSelectorImage()" style="position: fixed;top: 10px;right: 10px;">X</button>
+  <app-image-selector></app-image-selector>
 </div>
