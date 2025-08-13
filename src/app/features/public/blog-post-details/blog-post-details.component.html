@@ -1,0 +1,53 @@
+<ng-container *ngIf="blogPost$ | async as blogPosts; else loader">
+  <div class="container-xl">
+    <div class="my-5 py-4">
+      <div class="col-12 col-md-10 col-lg-8 mx-auto">
+
+        <!-- Imagen principal -->
+        <img [src]="blogPosts.featureImageUrl" [alt]="blogPosts.title"
+          class="w-100 mb-4" style="max-height: 400px; object-fit: cover; cursor: pointer;">
+
+        <!-- Título -->
+        <h1 class="fw-bold mb-4 display-4">{{ blogPosts.title }}</h1>
+
+        <!-- Autor y fecha en línea -->
+        <div
+          class="d-flex flex-column flex-md-row flex-lg-row justify-content-between align-items-start text-muted small mb-3 gap-3 p-2">
+          <span><strong>Autor:</strong> {{ blogPosts.author }}</span>
+          <span><strong>Fecha de publicación:</strong> {{ blogPosts.publishedDate |
+            date:'longDate' }}</span>
+        </div>
+
+        <!-- Categorías -->
+        <div class="mb-4">
+          <span class="fw-bold">Categoría:</span>
+          <ng-container
+            *ngIf="blogPosts.categories.length > 0; else noCategory">
+            <span class="ms-2 badge bg-secondary rounded-2 p-2 me-2"
+              *ngFor="let category of blogPosts.categories">
+              {{ category.name }}
+            </span>
+          </ng-container>
+          <ng-template #noCategory>
+            <span class="ms-2 text-muted">Sin categoría</span>
+          </ng-template>
+        </div>
+
+        <!-- Contenido -->
+        <div class="blog-content fs-5 lh-lg">
+          <markdown [data]="blogPosts.content"></markdown>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #loader>
+  <div class="d-flex justify-content-center mt-5">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;"
+      role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+  </div>
+</ng-template>

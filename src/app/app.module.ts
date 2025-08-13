@@ -14,6 +14,9 @@ import { BlogPostListComponent } from './features/blog-post/blog-post-list/blog-
 import { AddBlogPostComponent } from './features/blog-post/add-blog-post/add-blog-post.component';
 import { EditBlogPostComponent } from './features/blog-post/edit-blog-post/edit-blog-post.component';
 import { ImageSelectorComponent } from './shared/components/image-selector/image-selector.component';
+import { HomeComponent } from './features/public/home/home.component';
+import { TruncatePipe } from './shared/pipes/truncateText';
+import { BlogPostDetailsComponent } from './features/public/blog-post-details/blog-post-details.component';
 
 
 
@@ -27,7 +30,10 @@ import { ImageSelectorComponent } from './shared/components/image-selector/image
     BlogPostListComponent,
     AddBlogPostComponent,
     EditBlogPostComponent,
-    ImageSelectorComponent    ],
+    ImageSelectorComponent,
+    HomeComponent,
+    TruncatePipe,
+    BlogPostDetailsComponent    ],
   imports: [
     BrowserModule,
     AppRoutingModule,

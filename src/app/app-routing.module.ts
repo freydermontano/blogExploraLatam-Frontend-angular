@@ -6,8 +6,22 @@ import { BlogPostListComponent } from './features/blog-post/blog-post-list/blog-
 import { AddBlogPostComponent } from './features/blog-post/add-blog-post/add-blog-post.component';
 import { RouterModule, Routes } from '@angular/router';
 import { EditBlogPostComponent } from './features/blog-post/edit-blog-post/edit-blog-post.component';
+import { HomeComponent } from './features/public/home/home.component';
+import { BlogPostDetailsComponent } from './features/public/blog-post-details/blog-post-details.component';
 
 const routes: Routes = [
+  //Home
+  {
+    path:'',
+    component: HomeComponent
+
+  },
+  //BlogPostDetails
+  {
+    path:'blog/:urlHandle',
+    component: BlogPostDetailsComponent
+
+  },
 
   //Categories
   {
