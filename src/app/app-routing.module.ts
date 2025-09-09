@@ -8,6 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { EditBlogPostComponent } from './features/blog-post/edit-blog-post/edit-blog-post.component';
 import { HomeComponent } from './features/public/home/home.component';
 import { BlogPostDetailsComponent } from './features/public/blog-post-details/blog-post-details.component';
+import { LoginComponent } from './features/auth/login/login.component';
 
 const routes: Routes = [
   //Home
@@ -15,6 +16,11 @@ const routes: Routes = [
     path:'',
     component: HomeComponent
 
+  },
+  //Login
+  {
+    path:'login',
+    component:LoginComponent
   },
   //BlogPostDetails
   {

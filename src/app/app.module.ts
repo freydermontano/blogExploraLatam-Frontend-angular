@@ -17,6 +17,7 @@ import { ImageSelectorComponent } from './shared/components/image-selector/image
 import { HomeComponent } from './features/public/home/home.component';
 import { TruncatePipe } from './shared/pipes/truncateText';
 import { BlogPostDetailsComponent } from './features/public/blog-post-details/blog-post-details.component';
+import { LoginComponent } from './features/auth/login/login.component';
 
 
 
@@ -33,7 +34,8 @@ import { BlogPostDetailsComponent } from './features/public/blog-post-details/bl
     ImageSelectorComponent,
     HomeComponent,
     TruncatePipe,
-    BlogPostDetailsComponent    ],
+    BlogPostDetailsComponent,
+    LoginComponent    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
