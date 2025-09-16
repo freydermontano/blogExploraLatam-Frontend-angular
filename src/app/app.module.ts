@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import {MarkdownModule} from 'ngx-markdown';
 import { AppComponent } from './app.component';
@@ -18,6 +18,7 @@ import { HomeComponent } from './features/public/home/home.component';
 import { TruncatePipe } from './shared/pipes/truncateText';
 import { BlogPostDetailsComponent } from './features/public/blog-post-details/blog-post-details.component';
 import { LoginComponent } from './features/auth/login/login.component';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 
 
 
@@ -45,7 +46,13 @@ import { LoginComponent } from './features/auth/login/login.component';
     MarkdownModule.forRoot()
 
   ],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:AuthInterceptor,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

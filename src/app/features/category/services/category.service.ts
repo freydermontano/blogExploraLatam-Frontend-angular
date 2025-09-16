@@ -1,24 +1,18 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { AddCategoryRequest } from '../models/add-category-model';
 import { Observable } from 'rxjs';
-import { Category } from '../models/Category.model';
-import { UpdateCategoryRequest } from '../models/update-category-request.model';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment';
+import { UpdateCategoryRequest } from '../models/update-category-request.model';
+
+import { Category } from '../models/Category.model';
+import { AddCategoryRequest } from '../models/add-category-model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CategoryService {
-  constructor(private http: HttpClient) {}
-
-  //Metodo para agregar una categoria
-  addCategory(model: AddCategoryRequest): Observable<void> {
-    return this.http.post<void>(
-      `${environment.apiBaseUrl}/api/categories`,
-      model
-    );
-  }
+  constructor(private http: HttpClient, private cookieService: CookieService) {}
 
   //Metodo para obtener todas las categorias
   getAllCategories(): Observable<Category[]> {
@@ -34,6 +28,14 @@ export class CategoryService {
     );
   }
 
+  //Metodo para agregar una categoria
+  addCategory(model: AddCategoryRequest): Observable<void> {
+    return this.http.post<void>(
+      `${environment.apiBaseUrl}/api/categories`,
+      model
+    );
+  }
+
   //Metodo para editar una categoria
   updateCategory(
     id: string,
@@ -46,7 +48,7 @@ export class CategoryService {
   }
 
   //Metodo para eliminar una categoria
-  deleteCategory(id: string): Observable<Category>{
+  deleteCategory(id: string): Observable<Category> {
     return this.http.delete<Category>(
       `${environment.apiBaseUrl}/api/categories/${id}`
     );
