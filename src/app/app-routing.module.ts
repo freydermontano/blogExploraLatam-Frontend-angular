@@ -32,29 +32,36 @@ const routes: Routes = [
   //Categories
   {
     path:'admin/categories',
-    component:CategoryListComponent
+    component:CategoryListComponent,
   },
    {
     path:'admin/categories/add',
-    component:AddCategoryComponent
+    component:AddCategoryComponent,
   },
   {
     path:'admin/categories/:id',
-    component:EditCategoryComponent
+    component:EditCategoryComponent,
+
   },
 
   //BlogPosts
   {
     path:'admin/blogposts',
-    component:BlogPostListComponent
+    component:BlogPostListComponent,
+
   },
   {
     path:'admin/blogposts/add',
-    component:AddBlogPostComponent
+    component:AddBlogPostComponent,
+
   },
    {
     path:'admin/blogposts/:id',
-    component:EditBlogPostComponent
+    component:EditBlogPostComponent,
+  },
+  {
+    path:'**',
+    redirectTo:'/login'
   }
 ];
 

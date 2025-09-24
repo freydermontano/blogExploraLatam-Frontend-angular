@@ -18,8 +18,8 @@
           <a class="nav-link nav-link-custom" href="#">Inicio</a>
         </li>
 
-        <!-- SOLO mostrar este dropdown si el usuario es writer o admin -->
-        <li class="nav-item dropdown"  *ngIf="user !== undefined &&  user?.roles?.includes('Writer')" >
+        <!-- Solo mostrara  dropdown si el usuario es writer -->
+        <li class="nav-item dropdown" *ngIf=" user !== undefined && user?.roles?.includes('Writer')">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
             role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Administrador <i class="fa-solid fa-chevron-down"
@@ -27,13 +27,13 @@
           </a>
 
           <ul class="dropdown-menu">
-            <!-- Mostrar Categorías solo si es admin -->
+            <!-- Mostrar Categoriaas solo si es  writer -->
             <li>
               <a class="dropdown-item"
                 [routerLink]="['admin/categories']">Categorias</a>
             </li>
 
-            <!-- Mostrar Publicaciones si es admin o writer -->
+            <!-- Mostrar Publicaciones si es writer -->
             <li>
               <a class="dropdown-item"
                 [routerLink]="['admin/blogposts']">Publicaciones</a>

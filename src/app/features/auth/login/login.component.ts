@@ -46,7 +46,7 @@ export class LoginComponent {
 
         //Redirigir al usuario a la pagina de Inicio
         this.router.navigateByUrl('/');
-        console.log(response);
+        console.log('response', response);
       },
       error: (error) => {
         console.log(' error', error);

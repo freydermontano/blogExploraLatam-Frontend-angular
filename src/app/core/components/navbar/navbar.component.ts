@@ -18,6 +18,7 @@ export class NavbarComponent implements OnInit {
     this.authService.user().subscribe({
       next: (response) => {
         this.user = response;
+        console.log('response', response);
       },
     });
 

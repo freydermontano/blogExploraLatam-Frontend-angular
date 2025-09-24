@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment';
 import { UpdateCategoryRequest } from '../models/update-category-request.model';
@@ -12,12 +12,22 @@ import { AddCategoryRequest } from '../models/add-category-model';
   providedIn: 'root',
 })
 export class CategoryService {
-  constructor(private http: HttpClient, private cookieService: CookieService) {}
+  constructor(private http: HttpClient) {}
 
   //Metodo para obtener todas las categorias
-  getAllCategories(): Observable<Category[]> {
+  getAllCategories(query?: string): Observable<Category[]> {
+    //recoger parametro
+    let params = new HttpParams();
+
+    if (query) {
+      params = params.set('query', query);
+    }
+
     return this.http.get<Category[]>(
-      `${environment.apiBaseUrl}/api/categories`
+      `${environment.apiBaseUrl}/api/categories`,
+      {
+        params: params,
+      }
     );
   }
 
