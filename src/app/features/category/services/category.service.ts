@@ -15,12 +15,20 @@ export class CategoryService {
   constructor(private http: HttpClient) {}
 
   //Metodo para obtener todas las categorias
-  getAllCategories(query?: string): Observable<Category[]> {
+  getAllCategories(query?: string, sortBy?: string, sortDirection?: string): Observable<Category[]> {
     //recoger parametro
     let params = new HttpParams();
 
     if (query) {
       params = params.set('query', query);
+    }
+
+    if (sortBy) {
+      params = params.set('sortBy', sortBy);
+    }
+
+    if (sortDirection) {
+       params = params.set('sortDirection', sortDirection);
     }
 
     return this.http.get<Category[]>(

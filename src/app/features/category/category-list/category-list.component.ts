@@ -17,6 +17,10 @@ export class CategoryListComponent implements OnInit {
     this.categories$ = this.categoryService.getAllCategories(query);
   }
 
+  sort(sortBy: string, sortDirection: string) {
+   this.categories$ = this.categoryService.getAllCategories(undefined, sortBy, sortDirection);
+  }
+
   // ngOnInit, al iniciar el componente carga todas las categorias sin filtrar.
   ngOnInit(): void {
     this.categories$ = this.categoryService.getAllCategories();

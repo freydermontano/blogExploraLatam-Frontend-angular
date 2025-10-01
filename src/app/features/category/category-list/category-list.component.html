@@ -25,7 +25,27 @@
       <thead>
         <tr>
           <th scope="col">Id</th>
-          <th scope="col">Nombre</th>
+          <th scope="col">
+            Nombre
+            <span>
+              <span>
+                <button
+                (click)="sort('name','asc')"
+                  type="button"
+                  class="btn btn-light me-2">
+                  <i class="bi bi-arrow-up"></i>
+                </button>
+              </span>
+              <span>
+                <button
+                (click)="sort('name','desc')"
+                  type="button"
+                  class="btn btn-light">
+                  <i class="bi bi-arrow-down"></i>
+                </button>
+              </span>
+            </span>
+          </th>
           <th scope="col">Url Handle</th>
           <th scope="col">Acciones</th>
         </tr>
