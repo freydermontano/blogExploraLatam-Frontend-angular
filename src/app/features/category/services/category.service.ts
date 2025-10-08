@@ -15,7 +15,13 @@ export class CategoryService {
   constructor(private http: HttpClient) {}
 
   //Metodo para obtener todas las categorias
-  getAllCategories(query?: string, sortBy?: string, sortDirection?: string): Observable<Category[]> {
+  getAllCategories(
+    query?: string,
+    sortBy?: string,
+    sortDirection?: string,
+    pageNumber?: number,
+    pageSize?: number
+  ): Observable<Category[]> {
     //recoger parametro
     let params = new HttpParams();
 
@@ -28,7 +34,13 @@ export class CategoryService {
     }
 
     if (sortDirection) {
-       params = params.set('sortDirection', sortDirection);
+      params = params.set('sortDirection', sortDirection);
+    }
+    if (pageNumber) {
+      params = params.set('pageNumber', pageNumber);
+    }
+    if (pageSize) {
+      params = params.set('pageSize', pageSize);
     }
 
     return this.http.get<Category[]>(
@@ -46,6 +58,12 @@ export class CategoryService {
     );
   }
 
+  //Metodo para Obtener Total de categorias
+  getCategoryCount(): Observable<number> {
+    return this.http.get<number>(
+      `${environment.apiBaseUrl}/api/categories/count`
+    );
+  }
   //Metodo para agregar una categoria
   addCategory(model: AddCategoryRequest): Observable<void> {
     return this.http.post<void>(

@@ -1,0 +1,46 @@
+.our-story-page {
+  font-family: 'Inter', sans-serif;
+  color: #333;
+}
+
+/* Tarjetas del equipo */
+.team-card{
+  background:none;
+  border: none;
+
+}
+.team-card .card {
+    background-color: #fff;
+    border-radius: 0.75rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .team-card .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  @media (max-width: 768px) {
+    .card {
+      padding: 1rem;
+    }
+  }
+
+
+.team-img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 4px solid #f3d162;
+  object-fit: cover;
+  margin: 0 auto;
+}
+
+/* Iconos  */
+.bi {
+  transition: transform 0.3s ease;
+}
+
+.bi:hover {
+  transform: scale(1.2);
+}

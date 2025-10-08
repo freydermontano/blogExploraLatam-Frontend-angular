@@ -19,6 +19,9 @@ import { TruncatePipe } from './shared/pipes/truncateText';
 import { BlogPostDetailsComponent } from './features/public/blog-post-details/blog-post-details.component';
 import { LoginComponent } from './features/auth/login/login.component';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { AboutComponent } from './core/components/about/about.component';
+import { ActivitiesComponent } from './core/components/activities/activities.component';
+import { FooterComponent } from './core/components/footer/footer.component';
 
 
 
@@ -36,7 +39,10 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
     HomeComponent,
     TruncatePipe,
     BlogPostDetailsComponent,
-    LoginComponent    ],
+    LoginComponent,
+    AboutComponent,
+    ActivitiesComponent,
+    FooterComponent    ],
   imports: [
     BrowserModule,
     AppRoutingModule,

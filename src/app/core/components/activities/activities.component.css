@@ -1,0 +1,46 @@
+/* Tarjetas */
+.activity-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.3rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease-in-out;
+  background-color: #000;
+}
+
+.activity-card:hover {
+  transform: translateY(-6px);
+}
+
+.activity-card img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 0.3rem;
+  filter: brightness(70%);
+  transition: all 0.3s ease-in-out;
+}
+
+.activity-card:hover img {
+  filter: brightness(60%);
+  transform: scale(1.05);
+}
+
+.activity-text {
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+  color: #fff;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
+}
+
+.activity-text h5 {
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.activity-text p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+

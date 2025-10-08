@@ -1,23 +1,59 @@
-/* Efecto de zoom suave */
-.card {
+  .hero-section {
+    padding: 100px 0;
+    text-align: center;
+    background: url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+    background-size: cover;
+    position: relative;
+  }
+
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+
+
+/* Card  */
+.blog-card {
   transition: all 0.3s ease;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-.card-img-top {
-  overflow: hidden;
-}
-
-.card-img-top img {
+/* Zoom suave en la imagen */
+.blog-card .card-img-top img {
   cursor: pointer;
   transition: transform 0.5s ease;
 }
 
-.card:hover .card-img-top img {
+.blog-card:hover .card-img-top img {
   transform: scale(1.05);
 }
 
-/* Mejora la tarjeta al hacer hover */
-.card:hover {
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+/* Elevacion de la card al pasar mouse */
+.blog-card:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
   transform: translateY(-5px);
+}
+
+/* Boton */
+.blog-card .btn-outline-primary {
+  transition: all 0.3s ease;
+}
+
+.blog-card .btn-outline-primary:hover {
+  background-color: #0d6efd;
+  color: white;
+  border-color: #0d6efd;
 }

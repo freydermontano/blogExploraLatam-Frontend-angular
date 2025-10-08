@@ -9,7 +9,12 @@ import { Observable } from 'rxjs';
   styleUrls: ['./category-list.component.css'],
 })
 export class CategoryListComponent implements OnInit {
+  //Variables
   categories$?: Observable<Category[]>;
+  totalCount?: number;
+  list: number[] = [];
+  pageNumber = 1;
+  pageSize = 5;
 
   constructor(private categoryService: CategoryService) {}
 
@@ -18,11 +23,67 @@ export class CategoryListComponent implements OnInit {
   }
 
   sort(sortBy: string, sortDirection: string) {
-   this.categories$ = this.categoryService.getAllCategories(undefined, sortBy, sortDirection);
+    this.categories$ = this.categoryService.getAllCategories(
+      undefined,
+      sortBy,
+      sortDirection
+    );
+  }
+
+  // Paginacion
+  getPage(pageNumber: number) {
+    this.pageNumber = pageNumber;
+    this.categories$ = this.categoryService.getAllCategories(
+      undefined,
+      undefined,
+      undefined,
+      this.pageNumber,
+      this.pageSize
+    );
+  }
+
+  getNextPage() {
+    if (this.pageNumber + 1 > this.list.length) {
+      return;
+    }
+    this.pageNumber += 1;
+    this.categories$ = this.categoryService.getAllCategories(
+      undefined,
+      undefined,
+      undefined,
+      this.pageNumber,
+      this.pageSize
+    );
+  }
+  getPreviousPage() {
+     if (this.pageNumber - 1 < 1) {
+      return;
+    }
+    this.pageNumber -= 1;
+    this.categories$ = this.categoryService.getAllCategories(
+      undefined,
+      undefined,
+      undefined,
+      this.pageNumber,
+      this.pageSize
+    );
   }
 
   // ngOnInit, al iniciar el componente carga todas las categorias sin filtrar.
   ngOnInit(): void {
-    this.categories$ = this.categoryService.getAllCategories();
+    this.categoryService.getCategoryCount().subscribe({
+      next: (value) => {
+        this.totalCount = value;
+        this.list = Array(Math.ceil(value / this.pageSize));
+
+        this.categories$ = this.categoryService.getAllCategories(
+          undefined,
+          undefined,
+          undefined,
+          this.pageNumber,
+          this.pageSize
+        );
+      },
+    });
   }
 }

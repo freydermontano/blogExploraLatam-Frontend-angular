@@ -26,3 +26,25 @@
   margin: 2rem auto;
 
 }
+
+
+/* Pagina  */
+.page-item.active .page-link {
+  background-color: #007bff !important;
+  border-color: #007bff !important;
+  color: white !important;
+}
+
+/* Efecto hover para las demas paginas */
+.page-link:hover {
+  background-color: #e9ecef;
+  color: #007bff !important;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Transicion */
+.page-link {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+

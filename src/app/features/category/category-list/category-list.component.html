@@ -30,7 +30,7 @@
             <span>
               <span>
                 <button
-                (click)="sort('name','asc')"
+                  (click)="sort('name','asc')"
                   type="button"
                   class="btn btn-light me-2">
                   <i class="bi bi-arrow-up"></i>
@@ -38,7 +38,7 @@
               </span>
               <span>
                 <button
-                (click)="sort('name','desc')"
+                  (click)="sort('name','desc')"
                   type="button"
                   class="btn btn-light">
                   <i class="bi bi-arrow-down"></i>
@@ -64,6 +64,41 @@
         </tr>
       </tbody>
     </table>
+
+    <!-- Paginación -->
+    <nav aria-label="Navegación de páginas" class="mt-3">
+      <ul class="pagination justify-content-start mb-0">
+
+        <!-- Boton Anterior -->
+        <li class="page-item">
+          <a class="page-link text-primary fw-semibold"
+            (click)="getPreviousPage()" style="cursor: pointer;">
+            &laquo; Anterior
+          </a>
+        </li>
+
+        <!-- Numeros de pagina -->
+        <li *ngFor="let item of list; let index = index"
+          class="page-item"
+          [class.active]="pageNumber === index + 1">
+          <a class="page-link fw-semibold"
+            (click)="getPage(index + 1)"
+            style="cursor: pointer;">
+            {{ index + 1 }}
+          </a>
+        </li>
+
+        <!-- Botón Siguiente -->
+        <li class="page-item">
+          <a class="page-link text-primary fw-semibold"
+            (click)="getNextPage()" style="cursor: pointer;">
+            Siguiente &raquo;
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+
   </ng-container>
 
   <!-- Si no hay categorias -->
