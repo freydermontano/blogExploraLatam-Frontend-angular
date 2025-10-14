@@ -1,0 +1,64 @@
+/* IMAGEN CON DEGRADADO */
+.image-section {
+  position: relative;
+  cursor: pointer;
+  height: 100vh;
+  /* cubrir toda la pantalla */
+  background: url('https://images.pexels.com/photos/356808/pexels-photo-356808.jpeg') center center / cover no-repeat;
+}
+
+.image-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* Overlay oscuro para que el texto resalte */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+}
+
+.image-overlay-text {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  text-align: center;
+  z-index: 1;
+  padding: 20px 30px;
+}
+
+.image-overlay-text h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.btn-submit {
+  border-radius: 12px;
+  padding: 12px;
+  background: linear-gradient(to right, #ffce55, #fbb034);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+}
+
+.btn-submit:hover {
+  opacity: 0.9;
+}
+
+
+.image-overlay-text p {
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 767.98px) {
+  .image-section {
+    display: none;
+  }
+
+  .register-box {
+    height: auto;
+    padding: 2rem;
+  }
+}

@@ -22,6 +22,7 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { AboutComponent } from './core/components/about/about.component';
 import { ActivitiesComponent } from './core/components/activities/activities.component';
 import { FooterComponent } from './core/components/footer/footer.component';
+import { RegisterComponent } from './features/auth/register/register.component';
 
 
 
@@ -42,7 +43,8 @@ import { FooterComponent } from './core/components/footer/footer.component';
     LoginComponent,
     AboutComponent,
     ActivitiesComponent,
-    FooterComponent    ],
+    FooterComponent,
+    RegisterComponent    ],
   imports: [
     BrowserModule,
     AppRoutingModule,

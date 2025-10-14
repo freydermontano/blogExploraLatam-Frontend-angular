@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user.model';
 import { CookieService } from 'ngx-cookie-service';
+import { RegisterRequestModel } from '../models/register-request.model';
 
 @Injectable({
   providedIn: 'root',
@@ -57,7 +58,7 @@ export class AuthService {
     const roles = localStorage.getItem('user-role');
 
     if (email && roles) {
-    //  Crea un objeto que cumple con la interfaz
+      //  Crea un objeto que cumple con la interfaz
       const user: User = {
         email: email,
         roles: roles.split(','),
@@ -67,11 +68,18 @@ export class AuthService {
     return undefined;
   }
 
-
   //Cerrar seccion
   logout(): void {
     localStorage.clear();
     this.cookieService.delete('Authorization', '/');
     this.$user.next(undefined);
+  }
+
+  //Registrar
+  register(request: RegisterRequestModel) {
+    return this.httpClient.post(`${environment.apiBaseUrl}/api/auth/register`, {
+      email: request.email,
+      password: request.password,
+    });
   }
 }

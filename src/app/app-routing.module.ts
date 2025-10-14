@@ -11,6 +11,7 @@ import { BlogPostDetailsComponent } from './features/public/blog-post-details/bl
 import { LoginComponent } from './features/auth/login/login.component';
 import { AboutComponent } from './core/components/about/about.component';
 import { ActivitiesComponent } from './core/components/activities/activities.component';
+import { RegisterComponent } from './features/auth/register/register.component';
 
 const routes: Routes = [
   //Home
@@ -24,7 +25,12 @@ const routes: Routes = [
     path:'login',
     component:LoginComponent
   },
-  //Login
+  //register
+  {
+    path:'register',
+    component:RegisterComponent
+  },
+  //about
   {
     path:'about',
     component:AboutComponent

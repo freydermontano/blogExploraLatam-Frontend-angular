@@ -16,7 +16,7 @@ body {
 }
 
 /* FORMULARIO */
-.register-box {
+.auth-box {
   background-color: #ffffffee;
   padding: 2rem 3rem;
   width: 100%;
@@ -26,6 +26,7 @@ body {
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
+  border-radius: 12px;
 }
 
 .form-control {
@@ -110,3 +111,4 @@ body {
 input.ng-invalid.ng-touched {
   border-color: #dc3545;
 }
+
